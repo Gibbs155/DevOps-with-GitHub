@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: cd npm && npm install
+      - run: cd npm && npm ci
       - run: cd npm && npm test
 
   publish-gpr:
@@ -27,7 +27,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: cd npm && npm install
+      - name: 'Change NPM version'
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: ${{github.event.release.tag_name}}
+      - run: cd npm && npm ci
       - run: cd npm && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
