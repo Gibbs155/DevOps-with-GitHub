@@ -39,7 +39,6 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         working-directory: src/Tailwind.Traders.Web
         run: |
-          pwd
           ls
           imagename=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "Build and push $imagename"
