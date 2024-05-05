@@ -23,6 +23,10 @@ COPY . .
 RUN dotnet build
 RUN dotnet publish -o /ttweb
 
+
+# Ejecutar npm install
+RUN npm install
+
 FROM ${image}:${runtimeTag} as runtime
 WORKDIR /web
 COPY --from=build-net /ttweb .
