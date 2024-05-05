@@ -37,7 +37,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-        working-directory: ch9_release/src/Tailwind.Traders.Web
+        working-directory: src/Tailwind.Traders.Web
         run: |
           imagename=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "Build and push $imagename"
