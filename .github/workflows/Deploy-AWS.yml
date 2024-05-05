@@ -7,7 +7,7 @@ env:
   ECR_REPOSITORY: xyz-demo-shop
   ECS_SERVICE: xyz-demo-shop-service
   ECS_CLUSTER: default
-  ECS_TASK_DEFINITION: ch9_release/aws-task-definition.json
+  ECS_TASK_DEFINITION: aws-task-definition.json
   CONTAINER_NAME: xyz-demo-shop
 
 jobs:
@@ -37,6 +37,9 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
+        run: |
+          pwd  
+          ls   
         working-directory: src/Tailwind.Traders.Web
         run: |
           imagename=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
